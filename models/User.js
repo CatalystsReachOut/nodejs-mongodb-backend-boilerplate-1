@@ -5,6 +5,49 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
 
+//college db Schema
+const collgeSchema=new mongoose.Schema({
+    Name:{
+        type:String,
+        unique:true,
+        required:true
+    },
+    Location:{
+        type:String,
+        unique:true,
+        maxlength:[50],
+
+    },
+    EstablisedYear:{
+        type:Number,
+        range: [0,],
+        
+    },
+    facultyAdviserEmail:{
+        type:email,
+        required:[true,'Please provide an email'],
+        validate:[validator.isEmail,'Please enter email in correct format'],
+        unique:true
+    },
+    facultyAdvisorName:{
+        type:String,
+        required:true,
+        maxlength:30
+    },
+    PresidentName:{
+        type:String,
+        required:true,
+        maxlength:30
+    },
+    presidentEmail:{
+        type:email,
+        required:[true,'Please provide an email'],
+        validate:[validator.isEmail,'Please enter email in correct format'],
+        unique:true
+    }
+})
+
+
 const userSchema=new mongoose.Schema({
     username:{
         type:String,
